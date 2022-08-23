@@ -17,15 +17,14 @@ const productsList = [
 ];
 
 // Create new item in list
-router.post("/", (req, res) => {
-  const currentList = productsList;
-
-  //   const product = {id,title};
-
-  const newProduct = req.body;
+router.post("/products", (req, res) => {
+  const newProduct = {
+    id: productsList.length,
+    title: req.body.title,
+  };
   console.log(newProduct);
 
-  //   currentList.push(newProduct);
+  productsList.push(newProduct);
 
   res.send("POST");
 });
