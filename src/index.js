@@ -4,7 +4,7 @@ const { PORT } = require("constants");
 
 const products = require("./router/products-router");
 
-require("./infra/database");
+require("./database");
 
 const app = express();
 
