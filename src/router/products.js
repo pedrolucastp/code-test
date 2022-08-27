@@ -7,20 +7,20 @@ const {
 
 const productRouter = new Router();
 
-// Retrieve
-productRouter.get("/", async (req, res) => {
-  const productsList = await getAllProducts();
-  console.log(productsList);
-  res.json(productsList);
-  // res.send("GET");
-});
-
 // Create
 productRouter.post("/", async (req, res) => {
   const { title, price } = req.body;
   const newProduct = await createNewProduct(title, price);
   console.log(newProduct);
   res.json(newProduct);
+});
+
+// Retrieve
+productRouter.get("/", async (req, res) => {
+  const productsList = await getAllProducts();
+  console.log(productsList);
+  res.json(productsList);
+  // res.send("GET");
 });
 
 // Update
