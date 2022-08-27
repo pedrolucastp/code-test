@@ -10,14 +10,14 @@ const productRouter = new Router();
 // Retrieve
 productRouter.get("/", async (req, res) => {
   const productsList = await getAllProducts();
-  // res.send("GET");
-  console.log(productsList)
+  console.log(productsList);
   res.json(productsList);
+  // res.send("GET");
 });
 
 // Create
 productRouter.post("/", async (req, res) => {
-  const { title, price } = req.body
+  const { title, price } = req.body;
   const newProduct = await createNewProduct(title, price);
   console.log(newProduct);
   res.json(newProduct);
@@ -33,7 +33,7 @@ productRouter.delete("/:id", async (req, res) => {
   const id = req.params.id;
   const deleteProductById = await deleteProduct(id);
   console.log(`Product Deleted: ID ${id}`);
-  res.json(deleteProductById)
+  res.json(deleteProductById);
 });
 
 module.exports = productRouter;
