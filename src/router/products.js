@@ -3,6 +3,7 @@ const {
   getAllProducts,
   createNewProduct,
   deleteProduct,
+  updateProduct
 } = require("../services/products.js");
 
 const productRouter = new Router();
@@ -24,9 +25,11 @@ productRouter.get("/", async (req, res) => {
 });
 
 // Update
-// productRouter.put("/", (req, res) => {
-//   res.send("PUT");
-// });
+productRouter.put("/", async (req, res) => {
+  const { query, field, newValue } = req.body;
+  const updateProductByQuery = await updateProduct(query, field, newValue);
+  res.json(updateProductByQuery);
+});
 
 // Delete
 productRouter.delete("/:id", async (req, res) => {

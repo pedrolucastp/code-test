@@ -37,8 +37,18 @@ const deleteProduct = async (value) => {
   }
 };
 
+const updateProduct = async (query, field, newValue) => {
+  try {
+    await ProductModel.findOneAndUpdate(query, { [field]: newValue });
+    return;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 module.exports = {
   getAllProducts,
   createNewProduct,
   deleteProduct,
+  updateProduct,
 };
