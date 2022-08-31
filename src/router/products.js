@@ -12,16 +12,13 @@ const productRouter = new Router();
 productRouter.post("/", async (req, res) => {
   const { title, price } = req.body;
   const newProduct = await createNewProduct(title, price);
-  console.log(newProduct);
   res.json(newProduct);
 });
 
 // Retrieve
 productRouter.get("/", async (req, res) => {
   const productsList = await getAllProducts();
-  console.log(productsList);
   res.json(productsList);
-  // res.send("GET");
 });
 
 // Update
@@ -35,7 +32,6 @@ productRouter.put("/", async (req, res) => {
 productRouter.delete("/:id", async (req, res) => {
   const id = req.params.id;
   const deleteProductById = await deleteProduct(id);
-  console.log(`Product Deleted: ID ${id}`);
   res.json(deleteProductById);
 });
 

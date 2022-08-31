@@ -1,20 +1,5 @@
 const ProductModel = require("../models/products.js");
 
-const getAllProducts = async () => {
-  try {
-    const productList = await ProductModel.find();
-    return productList.map((product, index) => ({
-      id: product._id,
-      title: product.title,
-      price: product.price,
-      salePrice: (product.price * 1.1).toFixed(2),
-      productIndex: index,
-    }));
-  } catch (e) {
-    console.error(e);
-  }
-};
-
 const createNewProduct = async (title, price) => {
   try {
     const newProduct = new ProductModel({
@@ -28,10 +13,14 @@ const createNewProduct = async (title, price) => {
   }
 };
 
-const deleteProduct = async (value) => {
+const getAllProducts = async () => {
   try {
-    await ProductModel.deleteOne({ _id: value });
-    return;
+    const productList = await ProductModel.find();
+    return productList.map((product) => ({
+      id: product._id,
+      title: product.title,
+      price: product.price,
+    }));
   } catch (e) {
     console.error(e);
   }
@@ -46,9 +35,18 @@ const updateProduct = async (query, field, newValue) => {
   }
 };
 
+const deleteProduct = async (id) => {
+  try {
+    await ProductModel.deleteOne({ _id: id });
+    return;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 module.exports = {
-  getAllProducts,
   createNewProduct,
-  deleteProduct,
+  getAllProducts,
   updateProduct,
+  deleteProduct,
 };
