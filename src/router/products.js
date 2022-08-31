@@ -1,12 +1,12 @@
 const { Router } = require("express");
+const productRouter = new Router();
+
 const {
   getAllProducts,
   createNewProduct,
   deleteProduct,
-  updateProduct
+  updateProduct,
 } = require("../services/products.js");
-
-const productRouter = new Router();
 
 // Create
 productRouter.post("/", async (req, res) => {
