@@ -11,26 +11,15 @@ const connect = async () => {
   }
 };
 
+const disconnect = async () => {
+  try {
+    await mongoose.connection.close();
+    console.log("Disconnected OK!!");
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 connect();
 
-
-
-// const Product = mongoose.model("Product", productsSchema);
-
-// const computer1 = new Product({ title: "MacBook Air Pro" })
-
-// await computer1.save();
-
-// const computer2 = new Product({ title: "MacBook Pro" });
-
-// await computer2.save();
-
-// await Product.deleteOne({ title: "MacBook Air" })
-
-// await Product.deleteOne({  _id: "6306c1fff18a2cd19c225251" })
-
-// await Product.deleteOne({  _id: "6306c201f18a2cd19c225253" })
-
-// const productsFromDB = await Product.find();
-
-// console.log("Products List from DB: \n", productsFromDB);
+module.exports = { connect, disconnect };

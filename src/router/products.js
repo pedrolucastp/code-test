@@ -22,10 +22,13 @@ productRouter.get("/", async (req, res) => {
 });
 
 // Update
-productRouter.put("/", async (req, res) => {
-  const { query, field, newValue } = req.body;
-  const updateProductByQuery = await updateProduct(query, field, newValue);
-  res.json(updateProductByQuery);
+productRouter.put("/:id", async (req, res) => {
+  const query = { _id: req.params.id };
+  const { field, newValue } = req.body;
+  
+  const updateProductById = await updateProduct(query, field, newValue);
+ 
+  res.json(updateProductById);
 });
 
 // Delete
